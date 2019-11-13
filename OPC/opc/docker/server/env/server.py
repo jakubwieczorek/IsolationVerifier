@@ -1,41 +1,54 @@
-from opcua import Server 
+from opcua import Server
+from opcua import ua
 from random import randint
 import datetime
 import time
+import serial
+
+ser = serial.Serial(
+    port='/dev/ttyACM0',
+    baudrate=115200,
+    parity=serial.PARITY_NONE,
+    stopbits=serial.STOPBITS_ONE,
+    bytesize=serial.EIGHTBITS
+)
 
 server = Server()
 
-url = "opc.tcp://opc_server:4840"
+url = "opc.tcp://194.12.161.52:4841"
 server.set_endpoint(url)
 
+# server namespace
 name = "OPCUA_SIMULATION_SERVER"
 addspace = server.register_namespace(name)
 
+# certificates
+server.load_certificate("pem/cert.pem")
+server.load_private_key("pem/key.pem")
+server.set_security_policy([ua.SecurityPolicyType.Basic256Sha256_SignAndEncrypt])
+
+
+# configure nodes
 node = server.get_objects_node()
-
-Param = node.add_object(addspace, "Parameters")
-
-Temp = Param.add_variable(addspace, "Temperature", 0)
-Press = Param.add_variable(addspace, "Pressure", 0)
-Time = Param.add_variable(addspace, "Time", 0)
-
-Temp.set_writable()
-Press.set_writable()
-Time.set_writable()
+param = node.add_object(addspace, "parameters")
+temp = param.add_variable(addspace, "temperature", 0)
+temp.set_writable()
 
 server.start()
+
 print("Server started at {}", url)
 
 while True:
-    temperature = randint(10, 50)
-    pressure = randint(200, 999)
-    mTime = datetime.datetime.now()
+    response = ser.readline()
+    print(response)
 
-    print(temperature, pressure, mTime)
+    #temperature = randint(10, 50)
+    #pressure = randint(200, 999)
+    #mTime = datetime.datetime.now()
 
-    Temp.set_value(temperature)
-    Press.set_value(pressure)
-    Time.set_value(mTime)
+    # print(temperature, pressure, mTime)
+
+    #temp.set_value(response)
 
     time.sleep(2)
 

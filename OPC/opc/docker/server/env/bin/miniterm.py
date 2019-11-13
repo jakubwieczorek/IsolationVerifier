@@ -1,4 +1,4 @@
-#!/mnt/c/Documents/IsolationVerifier/OPC/opc/docker/server/env/bin/python3
+#!/home/pi/Documents/isolationverifier/OPC/opc/docker/server/env/bin/python3
 #
 # Very simple serial terminal
 #

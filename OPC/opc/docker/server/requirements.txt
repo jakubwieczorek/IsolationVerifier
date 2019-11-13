@@ -1,0 +1,10 @@
+cffi==1.13.2
+cryptography==2.8
+lxml==4.4.1
+opcua==0.98.7
+pkg-resources==0.0.0
+pycparser==2.19
+pyserial==3.4
+python-dateutil==2.8.1
+pytz==2019.3
+six==1.13.0

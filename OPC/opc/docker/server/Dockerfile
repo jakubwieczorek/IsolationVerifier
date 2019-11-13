@@ -8,7 +8,8 @@ RUN apt-get update && apt-get install -y \
 	wget \
 	iputils-ping \
 	python 3.8 \
-	python3-venv
+	python3-venv \
+	usbutils
 
 COPY ./fileswap /fileswap
 
