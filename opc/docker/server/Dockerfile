@@ -7,11 +7,14 @@ RUN apt-get update && apt-get install -y \
 	telnet \
 	wget \
 	iputils-ping \
-	python 3.8 \
-	python3-venv \
+	python3 \
+	python3-pip \
 	usbutils \
-	virtualenv
+	libxml2-dev \
+	libxslt1-dev
 
 COPY ./fileswap /fileswap
 
-COPY env /home/env
+RUN pip3 install opcua \
+	pyserial \
+	cryptography
