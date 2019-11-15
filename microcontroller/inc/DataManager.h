@@ -18,7 +18,7 @@ private:
 		uint8_t size = 20;
 public:
 		void add(uint16_t value);
-		uint16_t calculateAvarage();
+		uint16_t calculateAverage();
 };
 
 #endif /* DATAMANAGER_H_ */
