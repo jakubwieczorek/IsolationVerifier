@@ -5,50 +5,80 @@ import datetime
 import time
 import serial
 
-ser = serial.Serial(
-    port='/dev/ttyACM0',
-    baudrate=115200,
-    parity=serial.PARITY_NONE,
-    stopbits=serial.STOPBITS_ONE,
-    bytesize=serial.EIGHTBITS
-)
+ADC_CH1          = "ADC_CH1"
+ADC_CH1_RAW      = "ADC_CH1_RAW"
+ADC_CH1_MEAN     = "ADC_CH1_MEAN_20"
+ADC_CH1_MEAN_RAW = "ADC_CH1_MEAN_RAW_20"
 
-server = Server()
+class OpcManager:
+    def __init__(self, url):
+        self.server = Server() 
+        self.url = url
+        
+    def configure_server(self):
+        self.server.set_endpoint(self.url)
+        
+        # server namespace
+        self.serverName = "OPCUA_SIMULATION_SERVER"
+        self.namespace = self.server.register_namespace(self.serverName)
+    
+    def configure_certificates(self):
+        self.server.load_certificate("pem/cert.pem")
+        self.server.load_private_key("pem/key.pem")
+        self.server.set_security_policy([ua.SecurityPolicyType.Basic256Sha256_SignAndEncrypt])
 
-url = "opc.tcp://172.18.0.2:4841"
-server.set_endpoint(url)
+    def configure_nodes(self):
+        node = self.server.get_objects_node()
+        param = node.add_object(self.namespace, "parameters")
 
-# server namespace
-name = "OPCUA_SIMULATION_SERVER"
-addspace = server.register_namespace(name)
+        self.adc_ch1 = param.add_variable(self.namespace, ADC_CH1, 0)
+        self.adc_ch1_raw = param.add_variable(self.namespace, ADC_CH1_RAW, 0)
+        self.adc_ch1_mean = param.add_variable(self.namespace, ADC_CH1_MEAN, 0)
+        self.adc_ch1_mean_raw = param.add_variable(self.namespace, ADC_CH1_MEAN_RAW, 0)
 
-# certificates
-server.load_certificate("pem/cert.pem")
-server.load_private_key("pem/key.pem")
-server.set_security_policy([ua.SecurityPolicyType.Basic256Sha256_SignAndEncrypt])
+        self.adc_ch1.set_writable()
+        self.adc_ch1_raw.set_writable()
+        self.adc_ch1_mean.set_writable()
+        self.adc_ch1_mean_raw.set_writable()
 
+    def parseData(self, data):
 
-# configure nodes
-node = server.get_objects_node()
-param = node.add_object(addspace, "parameters")
-temp = param.add_variable(addspace, "temperature", 0)
-temp.set_writable()
+        try:
+            if(data[0] == ADC_CH1):
+                self.adc_ch1_raw.set_value(int(data[1]))
+                self.adc_ch1.set_value(float(data[2]))
+            if(data[0] == ADC_CH1_MEAN):
+                self.adc_ch1_mean_raw.set_value(int(data[1]))
+                self.adc_ch1_mean.set_value(float(data[2]))
+        except ValueError:
+            print("conversion problem")
 
-server.start()
+if __name__ == "__main__":
+    opcManager = OpcManager("opc.tcp://172.18.0.2:4840")
+    opcManager.configure_server()
+    opcManager.configure_certificates()
+    opcManager.configure_nodes()
+    
+    opcManager.server.start()
 
-print("Server started at {}", url)
+    print("Server started at {}", opcManager.url)
+    
+    ser = serial.Serial(
+        port='/dev/ttyACM0',
+        baudrate=115200,
+        parity=serial.PARITY_NONE,
+        stopbits=serial.STOPBITS_ONE,
+        bytesize=serial.EIGHTBITS
+    )
 
-while True:
-    response = ser.readline()
-    print(response)
+    while True:
+        byte_response = ser.readline()
+        char_response = byte_response.decode('UTF-8')
+        data = char_response.split()
+        print(char_response)
+   
+        opcManager.parseData(data)
 
-    #temperature = randint(10, 50)
-    #pressure = randint(200, 999)
-    #mTime = datetime.datetime.now()
+        #temp.set_value(response)
 
-    # print(temperature, pressure, mTime)
-
-    #temp.set_value(response)
-
-    time.sleep(2)
-
+        #time.sleep(2)
