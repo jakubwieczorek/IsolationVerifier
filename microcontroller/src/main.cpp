@@ -17,6 +17,7 @@
 UART_HandleTypeDef uart;
 ADC_HandleTypeDef adc;
 DMA_HandleTypeDef dma;
+DMA_HandleTypeDef dma_uart;
 
 uint16_t adc_value[2];
 
@@ -28,11 +29,27 @@ void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin)
 	}
 }
 
-void send_message(char *a_message)
+void send_message(const char *a_message)
 {
-	HAL_UART_Transmit(&uart, (uint8_t*)a_message, strlen(a_message), 1000);
+	HAL_UART_Transmit_DMA(&uart, (uint8_t*)a_message, strlen(a_message));
 }
-//
+
+
+const char* prepareMsg(const uint16_t &adc_value, const uint16_t &average)
+{
+	char adc_value_msg[100];
+	char average_msg[100];
+
+	std::string sMsg;
+
+	sprintf(adc_value_msg, "ADC CH1  = (%4d) (%1.3fV)\t", adc_value, adc_value * 3.3f / 4096.0f);
+	sprintf(average_msg, "AVARAGE  = (%4d) (%1.3fV)\r\n", average, average * 3.3f / 4096.0f);
+
+	sMsg = std::string() + adc_value_msg + average_msg;
+
+	return sMsg.c_str();
+}
+
 void gpio_config()
 {
 	GPIO_InitTypeDef gpio;
@@ -115,6 +132,29 @@ void dma_config()
 	dma.Init.Priority = DMA_PRIORITY_HIGH;
 	HAL_DMA_Init(&dma);
 	__HAL_LINKDMA(&adc, DMA_Handle, dma);
+
+	dma_uart.Instance = DMA1_Channel7;
+	dma_uart.Init.Direction = DMA_MEMORY_TO_PERIPH;
+	dma_uart.Init.MemDataAlignment = DMA_MDATAALIGN_BYTE;
+	dma_uart.Init.MemInc = DMA_MINC_ENABLE;
+	dma_uart.Init.Mode = DMA_NORMAL;
+	dma_uart.Init.PeriphDataAlignment = DMA_PDATAALIGN_BYTE;
+	dma_uart.Init.PeriphInc = DMA_PINC_DISABLE;
+	dma_uart.Init.Priority = DMA_PRIORITY_HIGH;
+	HAL_DMA_Init(&dma_uart);
+	__HAL_LINKDMA(&uart, hdmatx, dma_uart);
+}
+
+void nvic_config()
+{
+	HAL_NVIC_SetPriority(EXTI15_10_IRQn, 0, 0);
+	HAL_NVIC_EnableIRQ(EXTI15_10_IRQn);
+
+	HAL_NVIC_SetPriority(DMA1_Channel7_IRQn, 0, 0);
+	HAL_NVIC_EnableIRQ(DMA1_Channel7_IRQn);
+
+	HAL_NVIC_SetPriority(USART2_IRQn, 0, 0);
+	HAL_NVIC_EnableIRQ(USART2_IRQn);
 }
 
 int main(void)
@@ -132,9 +172,7 @@ int main(void)
 	uart_config();
 	adc_config();
 	dma_config();
-
-	// NVIC
-	HAL_NVIC_EnableIRQ(EXTI15_10_IRQn);
+	nvic_config();
 
 	char msg[300];
 	sprintf(msg, "After reset\r\n");
@@ -147,15 +185,11 @@ int main(void)
 	while(1)
 	{
 		dataManager.add(adc_value[0]);
-		uint16_t avarage = dataManager.calculateAvarage();
+		uint16_t average = dataManager.calculateAverage();
 
-		sprintf(msg, "ADC CH1  = %d (%.3fV)\t", adc_value[0], adc_value[0] * 3.3f / 4096.0f);
-		send_message(msg);
+		send_message(prepareMsg(adc_value[0], average));
 
-		sprintf(msg, "AVARAGE  = %d (%.3fV)\r\n", avarage, avarage * 3.3f / 4096.0f);
-		send_message(msg);
-
-		if(avarage > 3000)
+		if(average > 3000)
 		{
 			sprintf(msg, "Leakage possible!\r\n");
 			send_message(msg);

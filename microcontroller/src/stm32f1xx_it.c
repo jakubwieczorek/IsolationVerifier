@@ -32,6 +32,9 @@
   * @param  None
   * @retval None
   */
+extern UART_HandleTypeDef uart;
+extern DMA_HandleTypeDef dma_uart;
+
 void SysTick_Handler(void)
 {
 	HAL_IncTick();
@@ -44,4 +47,14 @@ void SysTick_Handler(void)
 void EXTI15_10_IRQHandler(void)
 {
 	HAL_GPIO_EXTI_IRQHandler(GPIO_PIN_13);
+}
+
+void USART2_IRQHandler(void)
+{
+	HAL_UART_IRQHandler(&uart);
+}
+
+void DMA1_Channel7_IRQHandler(void)
+{
+	HAL_DMA_IRQHandler(&dma_uart);
 }
