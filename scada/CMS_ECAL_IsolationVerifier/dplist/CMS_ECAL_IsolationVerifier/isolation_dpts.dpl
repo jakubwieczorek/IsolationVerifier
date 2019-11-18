@@ -1,0 +1,14 @@
+# ascii dump of database
+
+# DpType
+TypeName
+StmIsolationSensor.StmIsolationSensor	1#1
+	limit	1#2
+		converted	22#14
+		raw	20#15
+	mean	1#6
+		converted	22#16
+		raw	20#17
+	value	1#10
+		converted	22#18
+		raw	20#19

@@ -1,0 +1,152 @@
+\documentclass[a4paper, keeplastbox]{jacow}
+
+\usepackage{pdfpages,multirow,ragged2e}
+\geometry{footskip=1cm}
+\ifboolexpr{bool{xetex} or bool{luatex}} 
+ {}                                      
+ {\usepackage[utf8]{inputenc}}           
+
+\usepackage[USenglish]{babel}
+\usepackage{authblk}
+\usepackage{float}
+\usepackage[nottoc]{tocbibind}
+\usepackage{listings}
+\usepackage{tikz}
+\usepackage{pgfplots}
+\sisetup{detect-weight,exponent-product=\cdot,output-decimal-marker={,},per-mode=symbol,binary-units=true,range-phrase={-},range-units=single}
+\usetikzlibrary{arrows,calc,decorations.markings,math,arrows.meta}
+
+\ifboolexpr{bool{jacowbiblatex}}%
+ {
+  \addbibresource{jacow-test.bib}
+  \addbibresource{biblatex-examples.bib}
+ }{}
+\listfiles
+
+\makeatletter
+\let\@fnsymbol\@arabic
+\makeatother
+
+\def\figurename{Fig.}
+\def\listingname{Lst.}
+
+\begin{document}
+
+\title{Leakage detection system for isolation cooling pipes report}
+
+\author{Jakub Wieczorek \thanks{jakub.lukasz.wieczorek@cern.ch EP/CMX Warsaw University of Technology (PL) The Institute of Electronic Systems}}
+
+\maketitle
+
+\section{Introduction}
+The \verb|CMS| \verb|Preshower| detector is cooled down by \verb|C6F14| liquid. The pipes that are used to transfer it are partially isolated using \verb|Armaflex| (\figurename{} \ref{rys:pipe}) in order to cool down the ending device not the surrounding environment. \verb|Armaflex| is subjected to ageing (esp. given the presence of radiation). When isolation is indeed damaged due to for example time, then air gets between isolation material and pipe and because of the temperature difference in the vicinity of pipe and the pipe itself, water condensates on the pipe's surface and gets inside \verb|Armaflex| through small holes where isolation was damaged, so the possibility of presence of water or ice in the vicinity of the pipe or in the \verb|Armaflex| body cannot be excluded. That situation causes energy dissipation and the cooling system no longer cools down only the detector, but also condensed water and ice in the isolation and on the pipe. Therefore a non-intrusive method of monitoring should be developed in order to detect such situation. As it is impossible to cut the isolation in order to install a proper dew point or water sensor (that would also have to be radiation tolerant) it was decided to test the possibility to monitor the existence of water or ice as a function of the resistance measurement between two points in the insulating pipe material. Another approach would be studying a possible different temperature measurement in case the existence of water or ice but this would require the insertion of a radiation tolerant temperature sensor and would put back to the problems of installing a relative humidity dew point sensor in the insulation body. The main point of the project is to construct a non-intrusive reliable system which will detect if \verb|Armaflex| isolation is damaged or not by more primitive and simple technologies than digital sensors.
+
+\section{Measurement principles/Description}
+\subsection{Description}
+
+The idea is to use two needles stuck into isolating material with accurate position (distance, depth) and finally measure and study resistance between that two needles as a function of the water presence.
+\begin{figure}[H]
+	\begin{center}
+		\scalebox{.2}{\includegraphics{./pictures/pipe.jpg}}
+	\end{center}
+	\caption{Isolating pipe}
+	\label{rys:pipe}
+\end{figure}
+
+At the beginning proposed solution of exploiting needles in order to measure humidity has to be explored thoroughly. Set of measurements were collected in time from complete dry isolation to fully wet and full of water. Experiments were performed for 30 minutes using \verb|Hewlett| \verb|Packard| \verb|4263B| \verb|LCR Meter| (\figurename{} \ref{rys:hewlett}), which was connected to the PC via \verb|GPIB-USB-HS| control device and \verb|MATLAB| where communication with \verb|LCR Meter| was implemented.
+
+\begin{figure}[H]
+	\begin{center}
+		\scalebox{.25}{\includegraphics{./pictures/hewlett.jpg}}
+	\end{center}
+	\caption{Hewlett Packard 4263B LCR Meter}
+	\label{rys:hewlett}
+\end{figure}
+
+The \verb|LCR| \verb|meter| allows to perform measurements of different quantities like capacitance or impedance. For the project purpose the device was configured to measure resistance. Both the device and the measurement configuration were performed in \verb|MATLAB| using \verb|Basic| language and commands.
+
+A pair of needles were mounted on a calipers as shown on \figurename{} \ref{rys:needles} in order to exactly set and monitor the needles distance and verify that both are in the same depth. All the experiments were performed with isolation placed on the floor horizontally as well as the calipers. 
+
+\begin{figure}[H]
+	\begin{center}
+		\scalebox{.25}{\includegraphics[angle=90,origin=c]{./pictures/needles.jpg}}
+	\end{center}
+	\caption{Needles mounted on the calipers with connected LCR Meter}
+	\label{rys:needles}
+\end{figure}
+
+\section{Experiments}
+A couple of experiments were performed with different needles configuration, that is a place of sticking into isolation and different amount of water. 
+Needles were placed in three ways. First they pierced fully isolation in the middle, consequently they were stuck to the top and bottom edge also horizontally, what means that the needles did not crossed inner hole of the isolation. The last experiment was performed with the needles stuck in the middle, however only to the depth of 1cm -- before they reached an inner hole. 
+
+\begin{figure}[H]
+	\begin{center}
+		\scalebox{.7}{\input{./plots/without_1.tex}}
+	\end{center}
+	\caption{Dry isolation}
+	\label{fig:dry}
+\end{figure}
+
+First experiment was started by monitoring the resistance with "dry" isolating material. Process is shown on the \figurename{} \ref{fig:dry}. Having collected measurements for 30 minutes, stable value can be observed.
+
+Second set of experiments were performed on the wetted isolation with the needles stuck in the middle of the isolation, deeply -- they pierced inner hole. Process can be observed on the \figurename{} \ref{fig:full_2}. At the beginning of the experiment till more or less \num{7.5} minute resistance was linear with a value close to 2M$\Omega$. After that it started to grow non-linearly to reach a threshold of 30M$\Omega$. It can be caused by gravitation, which got the water inside a isolation to the bottom or because wet surface started to evaporate. For this part three experiments were carried out, however one of them gave results far from these shown on the figure.
+
+\begin{figure}[H]
+	\begin{center}
+		\scalebox{.7}{\includegraphics{./plots/full_1.pdf}}
+	\end{center}
+	\caption{Isolation full of water, isolation surface not wiped and needles stuck in the middle of the isolation}
+	\label{fig:full_1}
+\end{figure}
+
+Second experiment was done as previous one with wet isolation, but this time needles were stuck to the top of isolation in order to not cross the inner hole what resulted in the \figurename{} \ref{fig:full_2}. There is huge diversity of the results in that experiments. Every particular test started from the same point, which is a couple of M$\Omega$ -- yellow curve for example in 5th minute shows a resistance on the level of 12M$\Omega$. After that 3 completely different thresholds were reached after growth till 20th minute. 
+
+\begin{figure}[H]
+	\begin{center}
+		\scalebox{.7}{\includegraphics{./plots/full_2.pdf}}
+	\end{center}
+	\caption{Isolation full of water, isolation surface not wiped and needles stuck on the top of the isolation}
+	\label{fig:full_2}
+\end{figure}
+
+Yellow curve stopped at 1G$\Omega$, orange one at 130M$\Omega$, which is really strange result and can be caused by some failure on the side of \verb|LTC| \verb|Meter|. Blue curve started at 350K$\Omega$ and reached limit of 2M$\Omega$. Conclusion from this experiment is following. In spite of potential failure with measuring device needles stuck to the top of isolation horizontally give very different results, caused by most likely different amount of water in the isolation and the gravitational issue explained during previous experiment. Top of the isolation is not good place to stick the needles.
+
+\begin{figure}[H]
+	\begin{center}
+		\scalebox{.7}{\input{./plots/full_3.tex}}
+	\end{center}
+	\caption{Isolation full of water with cable, isolation surface not wiped and needles stuck vertically on the bottom of the isolation}
+	\label{fig:full_3}
+\end{figure}
+
+Next experiments were performed with a cable tightly plugged inside the isolation. Result of the experiment with needles stuck to the bottom of the \verb|Armaflex| is presented on \figurename{} \ref{fig:full_3}. Result is quite accurate according to the previous tests. Resistance is spread over \num{0.4}M$\Omega$ and \num{1.2}M$\Omega$ throughout 30 minutes of measurements. Differences can be explained by the fact that needles were not stuck exactly in the same place in 3 experiments. Resistance is not growing as fast as during previous experiments because of the cable presence what keeps water more or less in the same place in that short period of time.
+
+Next experiment was done with the isolation wetted only inside the hole -- water got only to some point in the diameter, what is shown on the \figurename{} \ref{fig:inside}. Results are highly inaccurate and it is caused by the difference in water amount within the isolation and potential fake readouts from the device. 
+
+\begin{figure}[H]
+	\begin{center}
+		\scalebox{.7}{\input{./plots/inside_cable_down.tex}}
+	\end{center}
+	\caption{Isolation wetted only inside with cable, isolation surface not wiped and needles stuck vertically on the bottom of the isolation}
+	\label{fig:inside}
+\end{figure}
+
+The last experiment was performed with 1cm needles which did not pierced fully the isolation to the inner hole and fully wet. Isolation surface was wiped carefully from the water, so potential smaller resistance than dry material is caused by the water inside the \verb|Armaflex|. Result is presented on the \figurename{} \ref{fig:inside}. Figure consists of 4 curves from which all of them are between range 10M$\Omega$ and 40M$\Omega$.
+
+\begin{figure}[H]
+	\begin{center}
+		\scalebox{.7}{\input{./plots/inside_short.tex}}
+	\end{center}
+	\caption{Isolation fully wet with cable, isolation surface wiped and needles 1cm needless stuck in the middle}
+	\label{fig:inside_short}
+\end{figure}
+
+\section{Conclusion}
+The best results are achieved during experiments showed on \figurename{} \ref{fig:full_3} and \figurename{} \ref{fig:inside_short}. First of them, which is needles stuck to the down part of isolation tube gave relatively stable measurements in time, with values of hundreds kilo ohms, which is much lower than dry tube. However it is quite problematic to stick needles exactly in the same place with similar depth and distance to the inner hollow part. Experiment on \figurename{} \ref{fig:inside_short} gave also similar results for 4 tests, but the values behave similar to noise, so potential hint that there is a problem with isolation can be discovered by averaging resistance readouts and comparing them with the average resistance of dry isolation. Additionally resistance is pretty high -- 8M$\Omega$, what us really close to the dry material. Talking above into consideration there is possibility to utilise needles as a primitive humidity sensor when they will be stuck to the bottom of \verb|Armaflex| mainly because low resistance, however they should be stuck relatively in the same depth and place.
+
+\section{Technology and future work}
+After verifying the principle, the next step will be to establish an on-line measuring system using resistance-measuring equipment that can be directly integrated in the detector \verb|DCS| \verb|DSS|
+
+\listoffigures
+
+\end{document}

@@ -34,6 +34,9 @@ void send_message(const char *a_message)
 	HAL_UART_Transmit_DMA(&uart, (uint8_t*)a_message, strlen(a_message));
 }
 
+/**
+ * %NAME% &VALUE& $CONVERT$ #UNIT# \r\n
+ * */
 
 const char* prepareMsg(const uint16_t &adc_value, const uint16_t &average)
 {
@@ -42,8 +45,8 @@ const char* prepareMsg(const uint16_t &adc_value, const uint16_t &average)
 
 	std::string sMsg;
 
-	sprintf(adc_value_msg, "ADC CH1  = (%4d) (%1.3fV)\t", adc_value, adc_value * 3.3f / 4096.0f);
-	sprintf(average_msg, "AVARAGE  = (%4d) (%1.3fV)\r\n", average, average * 3.3f / 4096.0f);
+	sprintf(adc_value_msg, "ADC_CH1 %4d %1.3f Volts \r\n", adc_value, adc_value * 3.3f / 4096.0f);
+	sprintf(average_msg,   "ADC_CH1_MEAN_20 %4d %1.3f Volts \r\n", average, average * 3.3f / 4096.0f);
 
 	sMsg = std::string() + adc_value_msg + average_msg;
 
