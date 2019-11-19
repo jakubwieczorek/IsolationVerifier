@@ -1,0 +1,10 @@
+# ascii dump of database
+
+# Datapoint/DpId
+DpName	TypeName	ID
+_OPCUA30	_OPCUA	2853133
+
+# DpValue
+Manager/User	ElementName	TypeName	_original.._value	_original.._status64	_original.._stime
+UI (1)/0	_OPCUA30.Config.Servers	_OPCUA	"RASPBERRY_DOCKER_OPC_SERVER_1"	0x8300000000000101	19.11.2019 07:59:30.645
+UI (1)/0	_OPCUA30.Command.AddServer	_OPCUA	"RASPBERRY_DOCKER_OPC_SERVER_1"	0x8300000000000101	19.11.2019 07:59:30.645

@@ -3,3 +3,11 @@
 # Datapoint/DpId
 DpName	TypeName	ID
 ADC_CH1	StmIsolationSensor	2851931
+
+# DpValue
+Manager/User	ElementName	TypeName	_original.._value	_original.._status64	_original.._stime
+UI (1)/0	ADC_CH1.limit.converted	StmIsolationSensor	3	0x8300000000000101	19.11.2019 08:06:22.946
+DRV (30)/0	ADC_CH1.mean.converted	StmIsolationSensor	1.8270000219345	0x8300000000100101	19.11.2019 09:23:26.940
+DRV (30)/0	ADC_CH1.mean.raw	StmIsolationSensor	2268	0x8300000000100101	19.11.2019 09:23:26.940
+DRV (30)/0	ADC_CH1.value.converted	StmIsolationSensor	1.5310000181198	0x8300000000100101	19.11.2019 09:23:26.940
+DRV (30)/0	ADC_CH1.value.raw	StmIsolationSensor	1900	0x8300000000100101	19.11.2019 09:23:26.940

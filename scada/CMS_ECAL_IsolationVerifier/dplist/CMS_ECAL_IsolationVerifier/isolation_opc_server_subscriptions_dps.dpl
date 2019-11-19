@@ -1,0 +1,36 @@
+# ascii dump of database
+
+# Datapoint/DpId
+DpName	TypeName	ID
+_parameters	_OPCUASubscription	2853135
+
+# Aliases/Comments
+AliasId	AliasName	CommentName
+_parameters.	""	lt:1 LANG:10001 "ADC channels@@"
+
+# DpValue
+Manager/User	ElementName	TypeName	_original.._value	_original.._status64	_original.._stime
+UI (1)/0	_parameters.Config.RequestedLifetimeCount	_OPCUASubscription	100	0x8300000000000101	19.11.2019 08:00:48.939
+UI (1)/0	_parameters.Config.RequestedMaxKeepAliveCount	_OPCUASubscription	10	0x8300000000000101	19.11.2019 08:00:48.939
+UI (1)/0	_parameters.Config.MaxNotificationsPerPublish	_OPCUASubscription	0	0x8300000000000101	19.11.2019 08:00:48.939
+UI (1)/0	_parameters.Config.PublishingEnabled	_OPCUASubscription	1	0x8300000000000101	19.11.2019 08:00:48.939
+UI (1)/0	_parameters.Config.Priority	_OPCUASubscription	0	0x8300000000000101	19.11.2019 08:00:48.939
+UI (1)/0	_parameters.Config.SubscriptionType	_OPCUASubscription	1	0x8300000000000101	19.11.2019 08:00:48.939
+UI (1)/0	_parameters.Config.MonitoredItems.TimestampsToReturn	_OPCUASubscription	3	0x8300000000000101	19.11.2019 08:00:48.939
+UI (1)/0	_parameters.Config.MonitoredItems.QueueSize	_OPCUASubscription	1	0x8300000000000101	19.11.2019 08:00:48.939
+UI (1)/0	_parameters.Config.MonitoredItems.DiscardOldest	_OPCUASubscription	1	0x8300000000000101	19.11.2019 08:00:48.939
+UI (1)/0	_parameters.Config.MonitoredItems.DataChangeFilter.Trigger	_OPCUASubscription	1	0x8300000000000101	19.11.2019 08:00:48.939
+UI (1)/0	_parameters.Config.MonitoredItems.DataChangeFilter.DeadbandType	_OPCUASubscription	0	0x8300000000000101	19.11.2019 08:00:48.939
+UI (1)/0	_parameters.Config.MonitoredItems.DataChangeFilter.DeadbandValue	_OPCUASubscription	0	0x8300000000000101	19.11.2019 08:00:48.939
+UI (1)/0	_parameters.Config.MonitoredItems.SamplingInterval	_OPCUASubscription	0	0x8300000000000101	19.11.2019 08:00:48.939
+UI (1)/0	_parameters.Config.Alarm.Acknowledgement	_OPCUASubscription	"", "", ""	0x8300000000000101	19.11.2019 08:00:48.939
+UI (1)/0	_parameters.Config.Alarm.States	_OPCUASubscription		0x8300000000000101	19.11.2019 08:00:48.939
+UI (1)/0	_parameters.Config.Alarm.AlarmRanges	_OPCUASubscription		0x8300000000000101	19.11.2019 08:00:48.939
+UI (1)/0	_parameters.Config.Alarm.AlarmType	_OPCUASubscription	""	0x8300000000000101	19.11.2019 08:00:48.939
+UI (1)/0	_parameters.Config.Alarm.Flags	_OPCUASubscription	0x0	0x8300000000000101	19.11.2019 08:00:48.939
+UI (1)/0	_parameters.Config.RequestedPublishingInterval	_OPCUASubscription	500	0x8300000000000101	19.11.2019 08:00:48.939
+DRV (30)/0	_parameters.State.SubscriptionId	_OPCUASubscription	1	0x8300000000000101	19.11.2019 08:02:33.279
+DRV (30)/0	_parameters.State.RevisedLifetimeCount	_OPCUASubscription	100	0x8300000000000101	19.11.2019 08:02:33.279
+DRV (30)/0	_parameters.State.RevisedMaxKeepAliveCount	_OPCUASubscription	10	0x8300000000000101	19.11.2019 08:02:33.279
+DRV (30)/0	_parameters.State.AssignedOPCUAServer	_OPCUASubscription	"RASPBERRY_DOCKER_OPC_SERVER_1"	0x8300000000000101	19.11.2019 08:02:33.279
+DRV (30)/0	_parameters.State.RevisedPublishingInterval	_OPCUASubscription	500	0x8300000000000101	19.11.2019 08:02:33.279
