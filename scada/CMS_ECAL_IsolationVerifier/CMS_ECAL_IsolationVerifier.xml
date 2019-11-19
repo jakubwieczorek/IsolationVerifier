@@ -2,12 +2,12 @@
     <name>CMS_ECAL_IsolationVerifier</name>
     <version>1.0.0</version>
     <date>19/11/2019</date>
-    <required>fwCore=8.4.0-beta-90</required>
+    <required>fwCore=8.1.0</required>
 
     <init>./scripts/CMS_ECAL_IsolationVerifier/CMS_ECAL_IsolationVerifier_init.ctl</init>
     <postInstall>./scripts/CMS_ECAL_IsolationVerifier/CMS_ECAL_IsolationVerifier_postInstall.ctl</postInstall>
 
-
+    <dplist>./dplist/CMS_ECAL_IsolationVerifier/isolation_driver_30_dps.dpl</dplist>
     <dplist>./dplist/CMS_ECAL_IsolationVerifier/isolation_opc_server_subscriptions_dps.dpl</dplist><!--order is important-->
     <dplist>./dplist/CMS_ECAL_IsolationVerifier/isolation_opc_server_dps.dpl</dplist>
     <dplist>./dplist/CMS_ECAL_IsolationVerifier/isolation_opc_dps.dpl</dplist>
