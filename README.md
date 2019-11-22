@@ -26,18 +26,14 @@ elements and cables will be present. Intelligent systems like microcontroller wi
 be localised in the service cavern, where area is radiation free and connected through
 long cables with voltage divider in the CMS detector.
 
-<p align="center">
-  <img src="https://raw.githubusercontent.com/wiki/jakubwieczorek/LEDClock/clocks.png" width="900" />
-</p>
-
-**To find out more, please check out a [LEDClock wiki][wiki].**
+**To find out more, please check out a [Isolation Verifier wiki][wiki].**
 
 ## Project structure
 Isolation Verifier project consist of a few connected subprojects:
 
 | **Hardware and Electronics**     | **Microcontroller**     | **Raspberry OPC Server**           | **WinccOA SCADA** |
 |-------------------------------------|-------------------------------|-----------------------------------|-----------------------------------|
-| Primitive sensor consicts of a set of needles and high valued resistors as a voltage divider, located directly in the area of cooling pipes. Check [hardware wiki][hardware_wiki].| STM32 project written in HAL library, where voltage divider is connected with ADC, converted and sent through UART to Raspberry PI. Check [microcontroller wiki][microcontroller_wiki].|  OPC UA server written in Python3, which consumes data from STM32 through UART, deployed in Docker Ubuntu image, which is running on Raspberry PI 4. Image is configured by docker-compose software. Check [PCBs wiki][pcbs_wiki]. | SCADA, front-end part of a system as OPC UA client written in WinccOA Siemense technology and CERN JCOP framework as a component. Compatibile with WinccOA 3.16. Check [mobile app wiki][mobile_wiki]. |
+| Primitive sensor consicts of a set of needles and high valued resistors as a voltage divider, located directly in the area of cooling pipes. Check [hardware wiki][hardware_wiki].| STM32 project written in HAL library, where voltage divider is connected with ADC, converted and sent through UART to Raspberry PI. Check [microcontroller wiki][microcontroller_wiki].|  OPC UA server written in Python3, which consumes data from STM32 through UART, deployed in Docker Ubuntu image, which is running on Raspberry PI 4. Image is configured by docker-compose software. Check [OPC UA server and Raspberry PI wiki][opc_wiki]. | SCADA, front-end part of a system as OPC UA client written in WinccOA Siemense technology and CERN JCOP framework as a component. Compatibile with WinccOA 3.16. Check [SCADA wiki][scada_wiki]. |
 
 ## Questions or need help?
 Don't hesitate to send me an email on jakub.wieczorek0101@gmail.com or jakub.lukasz.wieczorek@cern.ch.
@@ -45,9 +41,8 @@ Don't hesitate to send me an email on jakub.wieczorek0101@gmail.com or jakub.luk
 ## Copyright and license
 LED Clock project is copyright to CERN under the [MIT License](https://opensource.org/licenses/MIT).
 
-[wiki]: https://github.com/jakubwieczorek/LEDClock/wiki
-[yt]: https://www.youtube.com/watch?v=dwCs7caOApE&feature=youtu.be
-[hardware_wiki]: https://github.com/jakubwieczorek/LEDClock/wiki/Hardware
-[microcontroller_wiki]: https://github.com/jakubwieczorek/LEDClock/wiki/Microcontroller
-[pcbs_wiki]: https://github.com/jakubwieczorek/LEDClock/wiki/PCBs
-[mobile_wiki]: https://github.com/jakubwieczorek/LEDClock/wiki/Mobile-application
+[wiki]: https://gitlab.cern.ch/jawieczo/isolationverifier/wikis/home
+[hardware_wiki]: https://gitlab.cern.ch/jawieczo/isolationverifier/wikis/Hardware
+[microcontroller_wiki]: https://gitlab.cern.ch/jawieczo/isolationverifier/wikis/Microcontroller
+[opc_wiki]: https://gitlab.cern.ch/jawieczo/isolationverifier/wikis/Raspberry-OPC-UA-Server
+[scada_wiki]: https://gitlab.cern.ch/jawieczo/isolationverifier/wikis/SCADA
