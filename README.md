@@ -31,10 +31,9 @@ long cables with voltage divider in the CMS detector.
 ## Project structure
 Isolation Verifier project consist of a few connected subprojects:
 
-| **Hardware and Electronics**     | **Microcontroller**     | **Raspberry OPC Server**           | **WinccOA SCADA** |
+| **Hardware and Electronics**     | **Microcontroller**     | **Raspberry OPC UA Server**           | **WinccOA SCADA** |
 |-------------------------------------|-------------------------------|-----------------------------------|-----------------------------------|
-| Primitive sensor consicts of a set of needles and high valued resistors as a voltage divider, located directly in the area of cooling pipes. Check [hardware wiki][hardware_wiki].| STM32 project written in HAL library, where voltage divider is connected with ADC, converted and sent through UART to Raspberry PI. Check [microcontroller wiki][microcontroller_wiki].|  OPC UA server written in Python3, which consumes data from STM32 through UART, deployed in Docker Ubuntu image, which is running on Raspberry PI 4. Image is configured by docker-compose software. Check [OPC UA server and Raspberry PI wiki][opc_wiki]. | SCADA, front-end part of a system as OPC UA client written in WinccOA Siemense technology and CERN JCOP framework as a component. Compatibile with WinccOA 3.16. Check [SCADA wiki][scada_wiki]. |
-
+| Primitive sensor consicts of a set of needles and high valued resistors as a voltage divider, located directly in the area of cooling pipes. For more information check [Hardware][hardware_wiki].| STM32 project written in HAL library, where voltage divider is connected with ADC, converted and sent through UART to Raspberry PI. For more information check [Microcontroller][microcontroller_wiki].|  OPC UA server written in Python3, which consumes data from STM32 through UART, deployed in Docker Ubuntu image, which is running on Raspberry PI 4. Image is configured by docker-compose software. For more information check [Raspberry OPC UA Server][opc_wiki]. | SCADA, front-end part of a system as OPC UA client written in WinccOA Siemense technology and CERN JCOP framework as a component. Compatibile with WinccOA 3.16. For more information check [SCADA][scada_wiki]. |
 ## Questions or need help?
 Don't hesitate to send me an email on jakub.wieczorek0101@gmail.com or jakub.lukasz.wieczorek@cern.ch.
 
