@@ -1,3 +1,13 @@
+/**
+  ******************************************************************************
+  * @file    DataManager.cpp
+  * @author  Jakub Wieczorek
+  * @version V1.0
+  * @date    22-November-2019
+  * @brief   Source file for DataManager class.
+  ******************************************************************************
+*/
+
 #include"DataManager.h"
 
 void DataManager::add(uint16_t value)

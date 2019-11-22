@@ -10,11 +10,17 @@ C_SRCS += \
 
 CPP_SRCS += \
 ../src/DataManager.cpp \
-../src/main.cpp 
+../src/callbacks.cpp \
+../src/config.cpp \
+../src/main.cpp \
+../src/service.cpp 
 
 OBJS += \
 ./src/DataManager.o \
+./src/callbacks.o \
+./src/config.o \
 ./src/main.o \
+./src/service.o \
 ./src/stm32f1xx_it.o \
 ./src/syscalls.o \
 ./src/system_stm32f1xx.o 
@@ -26,7 +32,10 @@ C_DEPS += \
 
 CPP_DEPS += \
 ./src/DataManager.d \
-./src/main.d 
+./src/callbacks.d \
+./src/config.d \
+./src/main.d \
+./src/service.d 
 
 
 # Each subdirectory must supply rules for building sources it contributes
