@@ -56,7 +56,7 @@ class OpcManager:
 if __name__ == "__main__":
     opcManager = OpcManager("opc.tcp://172.18.0.2:4840")
     opcManager.configure_server()
-    opcManager.configure_certificates()
+    #opcManager.configure_certificates()
     opcManager.configure_nodes()
     
     opcManager.server.start()
