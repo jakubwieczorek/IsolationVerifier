@@ -54,7 +54,7 @@ class OpcManager:
             print("conversion problem")
 
 if __name__ == "__main__":
-    opcManager = OpcManager("opc.tcp://172.18.0.2:4840")
+    opcManager = OpcManager("opc.tcp://opc_server:4840")
     opcManager.configure_server()
     #opcManager.configure_certificates()
     opcManager.configure_nodes()
