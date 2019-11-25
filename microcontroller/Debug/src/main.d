@@ -49,7 +49,9 @@ src/main.o: ../src/main.cpp \
  C:/Documents/IsolationVerifier/microcontroller/HAL_Driver/Inc/stm32f1xx_ll_usb.h \
  C:/Documents/IsolationVerifier/microcontroller/HAL_Driver/Inc/stm32f1xx_hal_pcd_ex.h \
  C:/Documents/IsolationVerifier/microcontroller/HAL_Driver/Inc/stm32f1xx_hal_hcd.h \
- C:/Documents/IsolationVerifier/microcontroller/inc/DataManager.h
+ C:/Documents/IsolationVerifier/microcontroller/inc/DataManager.h \
+ C:/Documents/IsolationVerifier/microcontroller/inc/service.h \
+ C:/Documents/IsolationVerifier/microcontroller/inc/config.h
 
 C:/Documents/IsolationVerifier/microcontroller/CMSIS/device/stm32f1xx.h:
 
@@ -152,3 +154,7 @@ C:/Documents/IsolationVerifier/microcontroller/HAL_Driver/Inc/stm32f1xx_hal_pcd_
 C:/Documents/IsolationVerifier/microcontroller/HAL_Driver/Inc/stm32f1xx_hal_hcd.h:
 
 C:/Documents/IsolationVerifier/microcontroller/inc/DataManager.h:
+
+C:/Documents/IsolationVerifier/microcontroller/inc/service.h:
+
+C:/Documents/IsolationVerifier/microcontroller/inc/config.h:
