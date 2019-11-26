@@ -48,9 +48,10 @@ Isolation Verifier project consist of a few connected sub-projects:
 Don't hesitate to send me an email on jakub.wieczorek0101@gmail.com or jakub.lukasz.wieczorek@cern.ch.
 
 ## Copyright and license
-LED Clock project is copyright to CERN under the [MIT License](https://opensource.org/licenses/MIT).
+IsolationVerifier project is copyright to CERN under the [MIT License](https://opensource.org/licenses/MIT).
 
-[hardware_wiki]: Hardware
-[microcontroller_wiki]: Microcontroller
-[opc_wiki]: Raspberry-OPC-UA-Server
-[scada_wiki]: SCADA
+[wiki]: https://gitlab.cern.ch/jawieczo/isolationverifier/wikis/home
+[hardware_wiki]: https://gitlab.cern.ch/jawieczo/isolationverifier/wikis/Hardware
+[microcontroller_wiki]: https://gitlab.cern.ch/jawieczo/isolationverifier/wikis/Microcontroller
+[opc_wiki]: https://gitlab.cern.ch/jawieczo/isolationverifier/wikis/Raspberry-OPC-UA-Server
+[scada_wiki]: https://gitlab.cern.ch/jawieczo/isolationverifier/wikis/SCADA
