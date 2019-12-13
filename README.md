@@ -50,8 +50,8 @@ Don't hesitate to send me an email on jakub.wieczorek0101@gmail.com or jakub.luk
 ## Copyright and license
 IsolationVerifier project is copyright to CERN under the [MIT License](https://opensource.org/licenses/MIT).
 
-[wiki]: https://gitlab.cern.ch/jawieczo/isolationverifier/wikis/home
-[hardware_wiki]: https://gitlab.cern.ch/jawieczo/isolationverifier/wikis/Hardware
-[microcontroller_wiki]: https://gitlab.cern.ch/jawieczo/isolationverifier/wikis/Microcontroller
-[opc_wiki]: https://gitlab.cern.ch/jawieczo/isolationverifier/wikis/Raspberry-OPC-UA-Server
-[scada_wiki]: https://gitlab.cern.ch/jawieczo/isolationverifier/wikis/SCADA
+[wiki]: https://github.com/jakubwieczorek/IsolationVerifier/wiki
+[hardware_wiki]: https://github.com/jakubwieczorek/IsolationVerifier/wiki/Hardware
+[microcontroller_wiki]: https://github.com/jakubwieczorek/IsolationVerifier/wiki/Microcontroller
+[opc_wiki]: https://github.com/jakubwieczorek/IsolationVerifier/wiki/Raspberry-OPC-UA-Server
+[scada_wiki]: https://github.com/jakubwieczorek/IsolationVerifier/wiki/SCADA
