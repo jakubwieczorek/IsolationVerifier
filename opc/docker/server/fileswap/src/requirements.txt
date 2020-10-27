@@ -1,5 +1,5 @@
 cffi==1.13.2
-cryptography==2.8
+cryptography==3.2
 lxml==4.4.1
 opcua==0.98.7
 pcparser==2.19
