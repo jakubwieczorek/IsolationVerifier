@@ -1,6 +1,6 @@
 cffi==1.13.2
 cryptography==2.8
-lxml==4.4.1
+lxml==4.6.2
 opcua==0.98.7
 pcparser==2.19
 pyserial==3.4
